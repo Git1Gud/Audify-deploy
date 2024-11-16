@@ -10,7 +10,7 @@ censor_audio_path = r"Media\overlay_audio.wav"
 output_audio_path = r"Media\output_audio.wav"
 output_video_path = r"Media\output_video_with_censored_audio.mp4"
 
-model_name = 'small'
+model_name = 'base'
 to_censor = ["kill", "killed", "fuck", "fucking", "killing"]
 
 
