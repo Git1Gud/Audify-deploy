@@ -10,13 +10,13 @@ censor_audio_path = r"Media\overlay_audio.wav"
 output_audio_path = r"Media\output_audio.wav"
 output_video_path = r"Media\output_video_with_censored_audio.mp4"
 
-model_name = 'base'
+model_name = 'tiny'
 to_censor = ["kill", "killed", "fuck", "fucking", "killing"]
 
 
 
 def censor_audio(base_audio_path, censor_audio_path, output_audio_path, model_name, to_censor, gain_of_censor=0, gain_of_base=0, silent=True):
-    print('Censoring started')
+    print('Censoring started',model_name)
     time_list = timestamp_list(base_audio_path, model_name)
 
     def find_time_occurrences(to_censor):
@@ -119,7 +119,7 @@ class Word:
         return [self.word,self.start,self.end]
     
 
-def timestamp_list(base_audio_path, model_name="base"):
+def timestamp_list(base_audio_path, model_name="tiny"):
     
     model = whisper.load_model(model_name,device="cuda" if torch.cuda.is_available() else "cpu")
 
