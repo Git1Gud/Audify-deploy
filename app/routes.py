@@ -16,7 +16,7 @@ to_censor = ["kill", "killed", "fuck", "fucking", "killing"]
 
 
 def censor_audio(base_audio_path, censor_audio_path, output_audio_path, model_name, to_censor, gain_of_censor=0, gain_of_base=0, silent=True):
-
+    print('Censoring started')
     time_list = timestamp_list(base_audio_path, model_name)
 
     def find_time_occurrences(to_censor):
