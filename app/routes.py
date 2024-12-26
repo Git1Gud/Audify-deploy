@@ -5,10 +5,16 @@ from moviepy.editor import VideoFileClip, AudioFileClip
 import os
 import whisper
 
-base_audio_path = r"Media\extracted_audio.wav"
-censor_audio_path = r"Media\overlay_audio.wav"
-output_audio_path = r"Media\output_audio.wav"
-output_video_path = r"Media\output_video_with_censored_audio.mp4"
+# Define the path to the Media folder outside the app directory
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # Get parent directory of the app
+print(BASE_DIR)
+MEDIA_DIR = os.path.join(BASE_DIR, 'Media')
+
+# File paths
+base_audio_path = os.path.join(MEDIA_DIR, "base_audio.wav")
+censor_audio_path = os.path.join(MEDIA_DIR, "overlay_audio.wav")
+output_audio_path = os.path.join(MEDIA_DIR, "output_audio.wav")
+output_video_path = os.path.join(MEDIA_DIR, "output_video_with_censored_audio.mp4")
 
 model_name = 'tiny'
 to_censor = ["kill", "killed", "fuck", "fucking", "killing"]
@@ -182,7 +188,7 @@ def upload_audio():
 def censor_get():
     if not base_audio_path:
         return jsonify({"error": "Base audio file not found. Please upload first."}), 404
-
+    print(to_censor)
     censor_audio(
         base_audio_path=base_audio_path,
         censor_audio_path=censor_audio_path,
